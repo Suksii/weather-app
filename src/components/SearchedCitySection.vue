@@ -7,7 +7,6 @@
         </div>
     </div>
 </template>
-
 <script setup>
 
 import Sunny from "../assets/sunny.png"
