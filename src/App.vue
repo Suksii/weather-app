@@ -3,6 +3,7 @@
     <HeaderSection @citySelected="updateCity"/>
     <Navbar />
     <SearchedCitySection :city="selectedCity"/>
+    <TodayView />
     <RouterView />
   </div>
 </template>
@@ -12,6 +13,7 @@ import { RouterView } from 'vue-router'
 import Navbar from './components/Navbar.vue';
 import HeaderSection from './components/HeaderSection.vue';
 import SearchedCitySection from './components/SearchedCitySection.vue';
+import TodayView from './views/TodayView.vue'
 import { ref } from 'vue';
 
 const selectedCity = ref('Podgorica, Montenegro')
