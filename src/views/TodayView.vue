@@ -43,4 +43,18 @@
 
 import { ref, onMounted, onUnmounted } from 'vue'
 import Sunny from '../assets/sunny.png'
+
+const currentTime = ref(new Date().toLocaleTimeString());
+
+const updateTime = () => {
+    currentTime.value = new Date().toLocaleTimeString();
+}
+
+onMounted(() => {
+    const interval = setInterval(updateTime, 100);
+
+    onUnmounted(() => {
+        clearInterval(interval)
+    })
+})
 </script>
