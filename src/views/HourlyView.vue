@@ -1,23 +1,19 @@
 <template>
     <div class="w-[80%] mx-auto py-10">
-        <div v-for="(temperature, index) in temperatures" :key="temperature.hour" class="py-2">
-            <div class="flex justify-evenly bg-blue-100 p-4 rounded-md transition-all duration-300 ease-in-out">
+        <div v-for="(temperature, index) in temperatures" :key="temperature.hour" class="">
+            <div class="flex justify-between items-center bg-gradient-to-r from-blue-200 via-blue-100 to-blue-50 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
                 <p class="text-lg font-semibold text-gray-700">{{ temperature.hour }}</p>
-                <img :src="temperature.weather" alt="" class="h-10 w-10">
+                <img :src="temperature.weather" alt="weather" class="h-10 w-10" />
                 <p class="text-lg font-semibold text-gray-700">{{ temperature.temperature }}</p>
                 <p @click="toggleDetails(index)" class="cursor-pointer">
-                    <svg v-if="!toggle.includes(index)" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6 transition-transform transform hover:scale-110">
+                    <svg :class="!toggle.includes(index) ? '' : 'rotate-180'" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="1.5" stroke="currentColor" class="h-6 w-6 transition-transform transform hover:scale-110">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                    </svg>
-                    <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="h-6 w-6 transition-transform transform hover:scale-110">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
                     </svg>
                 </p>
             </div>
-            <div v-if="toggle.includes(index)"
-                class="max-h-[500px] overflow-hidden bg-blue-50 ring-2 ring-blue-200 grid grid-cols-3 gap-4 my-2 rounded-lg p-4 transition-all duration-300 ease-in-out">
+            <div :class="toggle.includes(index) ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0 py-0'"
+                class="overflow-hidden bg-blue-50 ring-2 ring-blue-200 grid grid-cols-3 gap-6 my-4 rounded-lg p-6 transition-all duration-500 ease-in-out">
                 <p class="flex flex-col items-center text-gray-600"><span class="font-semibold">Dew Point</span>{{ temperature.dew_point }}</p>
                 <p class="flex flex-col items-center text-gray-600"><span class="font-semibold">Pressure</span>{{ temperature.pressure }}</p>
                 <p class="flex flex-col items-center text-gray-600"><span class="font-semibold">UV Index</span>{{ temperature.uv_index }}</p>
