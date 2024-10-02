@@ -3,7 +3,7 @@
     <HeaderSection @citySelected="updateCity"/>
     <Navbar />
     <SearchedCitySection :city="selectedCity"/>
-    <TodayView />
+    <TodayView :city="selectedCity"/>
     <RouterView />
   </div>
 </template>
