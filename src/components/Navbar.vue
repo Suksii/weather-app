@@ -42,8 +42,6 @@ const toggleMenu = () => {
 const navMenu = [
     { id: 1, name: 'Today', link: '/today' },
     { id: 2, name: 'Hourly', link: '/hourly' },
-    { id: 3, name: 'Daily', link: '/daily' },
-    { id: 4, name: 'Weekly', link: '/weekly' },
     { id: 5, name: 'Montly', link: '/monthly' }
 ]
 </script>

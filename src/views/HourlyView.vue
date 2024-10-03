@@ -1,5 +1,5 @@
 <template>
-    <div class="w-[80%] mx-auto py-10">
+    <div class="w-[95%] md:w-[80%] mx-auto py-10">
         <div v-for="(temperature, index) in temperatures" :key="temperature.hour" class="">
             <div class="flex justify-between items-center bg-gradient-to-r from-blue-200 via-blue-100 to-blue-50 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
                 <p class="text-lg font-semibold text-gray-700">{{ temperature.hour }}</p>

@@ -3,8 +3,9 @@
     <HeaderSection @citySelected="updateCity"/>
     <Navbar />
     <SearchedCitySection :city="selectedCity"/>
-    <!-- <TodayView :city="selectedCity"/> -->
+    <TodayView :city="selectedCity"/>
     <HourlyView />
+    <MonthlyView />
     <RouterView />
   </div>
 </template>
@@ -14,9 +15,10 @@ import { RouterView } from 'vue-router'
 import Navbar from './components/Navbar.vue';
 import HeaderSection from './components/HeaderSection.vue';
 import SearchedCitySection from './components/SearchedCitySection.vue';
-import TodayView from './views/TodayView.vue'
+import TodayView from './views/DailyView.vue'
 import { ref } from 'vue';
 import HourlyView from './views/HourlyView.vue';
+import MonthlyView from './views/MonthlyView.vue';
 
 const selectedCity = ref('Podgorica, Montenegro')
 
