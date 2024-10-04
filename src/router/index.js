@@ -13,21 +13,23 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/today',
+      path: '/today/:city',
       name: 'today',
       component: TodayView,
       props: true
     },
     {
-      path: '/hourly',
+      path: '/hourly/:city',
       name: 'hourly',
       component: HourlyView,
+      props: true
 
     },
     {
-      path: '/monthly',
+      path: '/monthly/:city',
       name: 'monthly',
-      component: MonthlyView
+      component: MonthlyView,
+      props: true
     },
   ]
 })
