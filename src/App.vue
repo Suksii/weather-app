@@ -3,11 +3,9 @@
     <HeaderSection @citySelected="updateCity" />
     <Navbar />
     <SearchedCitySection :city="selectedCity" />
-    <TodayView :city="selectedCity" />
-    <HourlyView />
-    <MonthlyView />
-    <RouterView />
-    <router-view />
+    <RouterView v-slot="{ Component, route }">
+      <component :is="Component" :city="selectedCity" />
+    </RouterView>
   </div>
 </template>
 
