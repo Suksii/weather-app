@@ -1,14 +1,18 @@
 import { createStore } from "vuex";
 import { db } from "@/firebaseConfig";
-import { collection, getDocs, doc, collection as subCollection } from "firebase/firestore";
+import { collection, getDocs, collection as subCollection } from "firebase/firestore";
 
 const store = createStore({
     state: {
         weatherData: [],
+        selectedCity: null,
     },
     mutations: {
         setWeatherData(state, data) {
             state.weatherData = data;
+        },
+        setSelectedCity(state, city) {
+            state.selectedCity = city
         }
     },
     actions: {
@@ -59,6 +63,7 @@ const store = createStore({
     },
     getters: {
         weatherData: (state) => state.weatherData,
+        selectedCity: (state) => state.selectedCity
     }
 });
 

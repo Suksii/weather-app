@@ -2,7 +2,7 @@
   <div class="min-h-screen bg-blue-300">
     <HeaderSection @citySelected="updateCity" />
     <Navbar :city="selectedCity" />
-    <SearchedCitySection :city="selectedCity" />
+    <SearchedCitySection />
     <RouterView v-slot="{ Component, route }">
       <component :is="Component" :city="selectedCity" />
     </RouterView>
@@ -18,13 +18,13 @@ import { useRoute, useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 
 
-const selectedCity = ref('Podgorica, Montenegro')
+const selectedCity = ref('Podgorica')
 const router = useRouter();
 const route = useRoute();
 const store = useStore();
 
 const updateCity = (city) => {
-  selectedCity.value = `${city}, Montenegro`
+  selectedCity.value = `${city}`
   router.push({ name: route.name, params: { city } })
 }
 
@@ -36,7 +36,7 @@ onMounted(async () => {
 
 watch(() => route.params.city, (newCity) => {
   if (newCity) {
-    selectedCity.value = `${newCity}, Montenegro`
+    selectedCity.value = `${newCity}`
   }
 })
 
