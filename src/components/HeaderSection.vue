@@ -6,10 +6,10 @@
                 class="rounded-full py-2 px-4 outline-none focus:outline-none bg-blue-50 min-w-[300px] placeholder:text-blue-700 text-blue-800"
                 v-model="searchQuery" @input="handleSearch" />
             <ul v-if="searchResults.length > 0" class="absolute w-full bg-blue-50 mt-2 rounded-sm z-40">
-                <li v-for="city in searchResults" :key="city"
+                <li v-for="city in searchResults" :key="city.id"
                     class="hover:bg-blue-700 hover:text-blue-50 duration-200 py-1 px-3 cursor-pointer"
-                    @click="() => { selectCity(city); searchQuery = ''; searchResults.length = 0 }">
-                    {{ city }}
+                    @click="() => { selectCity(city.id); searchQuery = ''; searchResults.length = 0 }">
+                    {{ city.id }}
                 </li>
             </ul>
         </div>
@@ -17,19 +17,25 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
+import { useStore } from 'vuex';
 
 const searchQuery = ref("");
 const searchResults = ref([]);
+const store = useStore();
 
-const cityList = ['Podgorica', 'Cetinje', 'Pljevlja', 'Niksic', 'Ulcinj', 'Bar', 'Berane']
+onMounted(() => {
+    store.dispatch('fetchWeatherData');
+});
+
+const weatherData = computed(() => store.getters.weatherData);
 
 const handleSearch = () => {
     if (searchQuery.value.trim() === '') {
         searchResults.value = [];
     } else {
-        searchResults.value = cityList.filter(city =>
-            city.toLocaleLowerCase().includes(searchQuery.value.trim().toLocaleLowerCase())
+        searchResults.value = weatherData.value.filter(city =>
+            city.id.toLocaleLowerCase().includes(searchQuery.value.trim().toLocaleLowerCase())
         )
     }
 }
@@ -41,3 +47,4 @@ const selectCity = (city) => {
 }
 
 </script>
+
