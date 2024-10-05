@@ -14,13 +14,13 @@
         </div>
         <div class="flex items-center justify-center">
             <nav v-if="isMenuOpen" class="flex flex-col md:flex-row justify-center items-center w-full">
-                <RouterLink v-for="item in navMenu" :to="item.link" :key="item.id" @click="toggleMenu"
+                <RouterLink v-for="item in navMenu" :to="`${item.link}/${city}`" :key="item.id" @click="toggleMenu"
                     class="p-4 min-w-32 w-full md:w-32 hover:shadow-md hover:shadow-blue-800 text-center duration-300 text-lg text-blue-700 font-semibold">
                     {{ item.name }}
                 </RouterLink>
             </nav>
             <nav class="hidden md:flex flex-row justify-center items-center w-full">
-                <RouterLink v-for="item in navMenu" :to="item.link" :key="item.id"
+                <RouterLink v-for="item in navMenu" :to="`${item.link}/${city}`" :key="item.id"
                     class="p-4 min-w-32 w-full md:w-32 hover:shadow-md hover:shadow-blue-800 text-center duration-300 text-lg text-blue-700 font-semibold">
                     {{ item.name }}
                 </RouterLink>
@@ -38,6 +38,13 @@ const isMenuOpen = ref(false);
 const toggleMenu = () => {
     isMenuOpen.value = !isMenuOpen.value;
 }
+
+const props = defineProps({
+    city: {
+        type: String,
+        default: "Podgorica"
+    }
+})
 
 const navMenu = [
     { id: 1, name: 'Today', link: '/today' },
