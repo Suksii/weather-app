@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen bg-blue-300">
-    <HeaderSection @citySelected="updateCity" />
-    <Navbar :city="selectedCity" />
+    <HeaderSection />
+    <Navbar />
     <SearchedCitySection />
     <RouterView v-slot="{ Component, route }">
       <component :is="Component" :city="selectedCity" />
@@ -24,7 +24,7 @@ const route = useRoute();
 const store = useStore();
 
 const updateCity = (city) => {
-  selectedCity.value = `${city}`
+  store.commit('setSelectedCity', city)
   router.push({ name: route.name, params: { city } })
 }
 
@@ -36,7 +36,7 @@ onMounted(async () => {
 
 watch(() => route.params.city, (newCity) => {
   if (newCity) {
-    selectedCity.value = `${newCity}`
+    store.commit('setSelectedCity', newCity)
   }
 })
 

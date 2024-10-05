@@ -5,7 +5,7 @@ import { collection, getDocs, collection as subCollection } from "firebase/fires
 const store = createStore({
     state: {
         weatherData: [],
-        selectedCity: null,
+        selectedCity: 'Podgorica',
     },
     mutations: {
         setWeatherData(state, data) {
