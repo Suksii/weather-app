@@ -64,6 +64,7 @@ onMounted(() => {
 const selectedCity = computed(() => store.getters.selectedCity);
 const weatherData = computed(() => store.getters.weatherData);
 
+
 const currentWeather = computed(() => {
     const cityWeather = weatherData.value.find(city => city.id === selectedCity.value);
     if (cityWeather) {

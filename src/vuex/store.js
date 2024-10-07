@@ -94,7 +94,6 @@ const store = createStore({
                     })
                 );
 
-                console.log('Cities with weather:', citiesList);
                 commit('setWeatherData', citiesList);
 
                 const monthlyWeatherData = citiesList.map(city => ({
@@ -102,6 +101,8 @@ const store = createStore({
                     monthlyWeather: city.monthlyWeather
                 }));
                 commit('setMonthlyWeatherData', monthlyWeatherData);
+
+                // console.log('Cities with weather:', citiesList);
 
             } catch (error) {
                 console.error('Error fetching data', error);

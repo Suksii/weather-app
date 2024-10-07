@@ -30,7 +30,6 @@ const updateCity = (city) => {
 
 onMounted(async () => {
   await store.dispatch('fetchWeatherData');
-  // await store.dispatch('fetchMonthlyWeatherData')
 });
 
 watch(() => route.params.city, (newCity) => {
