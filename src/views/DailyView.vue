@@ -2,7 +2,7 @@
     <div class="w-[800px] mx-auto bg-blue-50 my-10 pb-6 rounded-lg">
         <div class="flex flex-col">
             <div class="flex items-end justify-between py-2 bg-blue-200 rounded-t-lg px-4">
-                <p class="text-xl">{{ city }}</p>
+                <p class="text-xl">{{ selectedCity }}</p>
                 <p class="text-xl">{{ currentDate }}, {{ currentTime }}</p>
             </div>
             <div class="p-8 bg-blue-100 flex justify-between items-center">
@@ -41,11 +41,13 @@
 
 <script setup>
 
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
+import { useStore } from 'vuex';
 import Sunny from '../assets/sunny.png'
 
 const currentTime = ref(new Date().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}));
 const currentDate = ref(new Date().toDateString());
+const store = useStore();
 
 const updateTime = () => {
     currentTime.value = new Date().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
@@ -60,11 +62,6 @@ onMounted(() => {
     })
 })
 
-const props = defineProps({
-    city: {
-        type: String,
-        default: 'Podgorica, Montenegro'
-    }
-})
+const selectedCity = computed(() => store.getters.selectedCity);
 
 </script>

@@ -40,8 +40,6 @@ const handleSearch = () => {
     }
 }
 
-const emit = defineEmits(['citySelected']);
-
 const selectCity = (city) => {
     console.log('selectedCity', city);
     store.commit('setSelectedCity', city);

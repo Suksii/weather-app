@@ -20,6 +20,7 @@ const store = createStore({
             try {
                 const citiesCollection = collection(db, 'cities');
                 const citiesSnapshot = await getDocs(citiesCollection);
+                
                 const citiesList = await Promise.all(
                     citiesSnapshot.docs.map(async cityDoc => {
                         const cityData = { id: cityDoc.id, ...cityDoc.data() };
@@ -56,6 +57,7 @@ const store = createStore({
                 console.log('Cities with weather:', citiesList);
 
                 commit('setWeatherData', citiesList);
+
             } catch (error) {
                 console.error('Error fetching data', error);
             }
