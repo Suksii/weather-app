@@ -35,11 +35,6 @@
 
 <script setup>
 
-// import Cloud from "../assets/cloud.png"
-// import Sunny from "../assets/sunny.png"
-// import CloudRain from "../assets/cloud&rain.png"
-// import CloudRainSun from "../assets/cloud&rain&sun.png"
-// import CloudSun from "../assets/cloud&sun.png"
 import { computed, ref } from "vue"
 import { useStore } from "vuex"
 
