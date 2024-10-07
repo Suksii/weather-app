@@ -41,7 +41,7 @@ const handleSearch = () => {
 }
 
 const selectCity = (city) => {
-    console.log('selectedCity', city);
+    console.log('selectedCity:', city);
     store.commit('setSelectedCity', city);
 }
 
