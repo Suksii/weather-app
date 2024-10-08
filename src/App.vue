@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-blue-300">
+  <div class="min-h-screen bg-gradient-to-b from-blue-300 to-blue-500 flex flex-col">
     <HeaderSection />
     <Navbar />
     <SearchedCitySection />

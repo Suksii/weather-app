@@ -1,38 +1,45 @@
 <template>
-    <div class="w-[800px] mx-auto bg-blue-50 my-10 pb-6 rounded-lg">
+    <div class="w-[95%] md:w-[700px] mx-auto bg-blue-50 my-10 pb-6 rounded-lg shadow-lg overflow-hidden">
         <div class="flex flex-col">
-            <div class="flex items-end justify-between py-2 bg-blue-200 rounded-t-lg px-4">
-                <p class="text-xl">{{ selectedCity }}</p>
+            <div class="flex bg-gradient-to-r from-blue-400 to-blue-600 text-white items-end justify-between py-2 bg-blue-200 rounded-t-lg px-4">
+                <p class="text-xl">{{ selectedCity }}, Montenegro</p>
                 <p class="text-xl">{{ currentDate }}, {{ currentTime }}</p>
             </div>
-            <div v-if="currentWeather" class="p-8 bg-blue-100 flex justify-between items-center">
-                <img :src="currentWeather.weather" alt="weather icon" class="h-24 w-24" />
-                <p class="text-6xl">{{ currentWeather.temperature }}</p>
+            <div v-if="currentWeather" class="p-8 bg-blue-100 flex justify-around items-center">
+                <img :src="currentWeather.weather" v-if="currentWeather.weather" alt="weather icon" class="h-24 w-24" />
+                <p v-if="currentWeather.temperature" class="text-6xl font-semibold text-gray-800">{{ currentWeather.temperature }}</p>
+                <p v-else class="text-6xl text-gray-800">--</p>
             </div>
-            <div v-if="currentWeather" class="grid grid-cols-2">
+            <div v-if="currentWeather" class="grid md:grid-cols-2">
                 <div class="flex justify-between py-1 pt-2 mx-4 px-2 border-b border-black">
-                    <p>Wind</p>
-                    <p>{{ currentWeather.wind }}</p>
+                    <p class="text-gray-600 font-medium">Wind</p>
+                    <p v-if="currentWeather.wind" class="text-gray-900">{{ currentWeather.wind }}</p>
+                    <p v-else>--</p>
                 </div>
                 <div class="flex justify-between py-1 pt-2 mx-4 px-2 border-b border-black">
-                    <p>Humidity</p>
-                    <p>{{ currentWeather.humidity }}</p>
+                    <p class="text-gray-600 font-medium">Humidity</p>
+                    <p v-if="currentWeather.humidity" class="text-gray-900">{{ currentWeather.humidity }}</p>
+                    <p v-else>--</p>
                 </div>
                 <div class="flex justify-between py-1 pt-2 mx-4 px-2 border-b border-black">
-                    <p>Pressure</p>
-                    <p>{{ currentWeather.pressure }}</p>
+                    <p class="text-gray-600 font-medium">Pressure</p>
+                    <p v-if="currentWeather.pressure" class="text-gray-900">{{ currentWeather.pressure }}</p>
+                    <p v-else>--</p>
                 </div>
                 <div class="flex justify-between py-1 pt-2 mx-4 px-2 border-b border-black">
-                    <p>UV Index</p>
-                    <p>{{ currentWeather.uv_index }}</p>
+                    <p class="text-gray-600 font-medium">UV Index</p>
+                    <p v-if="currentWeather.uv_index" class="text-gray-900">{{ currentWeather.uv_index }}</p>
+                    <p v-else>--</p>
                 </div>
                 <div class="flex justify-between py-1 pt-2 mx-4 px-2 border-b border-black">
-                    <p>Dew Point</p>
-                    <p>{{ currentWeather.dew_point }}</p>
+                    <p class="text-gray-600 font-medium">Dew Point</p>
+                    <p v-if="currentWeather.dew_point" class="text-gray-900">{{ currentWeather.dew_point }}</p>
+                    <p v-else>--</p>
                 </div>
                 <div class="flex justify-between py-1 pt-2 mx-4 px-2 border-b border-black">
-                    <p>Visibility</p>
-                    <p>{{ currentWeather.visibility }}</p>
+                    <p class="text-gray-600 font-medium">Visibility</p>
+                    <p v-if="currentWeather.visibility" class="text-gray-900">{{ currentWeather.visibility }}</p>
+                    <p v-else>--</p>
                 </div>
             </div>
         </div>

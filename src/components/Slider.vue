@@ -47,5 +47,4 @@ const { items } = defineProps({
         required: true,
     }
 })
-
 </script>

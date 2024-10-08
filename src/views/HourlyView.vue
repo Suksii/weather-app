@@ -3,9 +3,12 @@
         <div v-for="(temperature, index) in hourlyWeather" :key="temperature.hour" class="">
             <div
                 class="flex justify-between items-center bg-gradient-to-r from-blue-200 via-blue-100 to-blue-50 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                <p class="text-lg font-semibold text-gray-700">{{ temperature.hour }}</p>
-                <img :src="temperature.weather" alt="weather" class="h-10 w-10" />
-                <p class="text-lg font-semibold text-gray-700">{{ temperature.temperature }} °C</p>
+                <p v-if="temperature.hour" class="text-lg font-semibold text-gray-700">{{ temperature.hour }}</p>
+                <p v-else>--</p>
+                <img v-if="temperature.weather" :src="temperature.weather" alt="weather" class="h-10 w-10" />
+                <p v-else>--</p>
+                <p v-if="temperature.temperature" class="text-lg font-semibold text-gray-700">{{ temperature.temperature }} °C</p>
+                <p v-else>--</p>
                 <p @click="toggleDetails(index)" class="cursor-pointer">
                     <svg :class="!toggle.includes(index) ? '' : 'rotate-180'" xmlns="http://www.w3.org/2000/svg"
                         fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -16,18 +19,36 @@
             </div>
             <div :class="toggle.includes(index) ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0 py-0'"
                 class="overflow-hidden bg-blue-50 ring-2 ring-blue-200 grid grid-cols-3 gap-6 my-4 rounded-lg p-6 transition-all duration-500 ease-in-out">
-                <p class="flex flex-col items-center text-gray-600"><span class="font-semibold">Dew Point</span>{{
-                    temperature.dew_point }}</p>
-                <p class="flex flex-col items-center text-gray-600"><span class="font-semibold">Pressure</span>{{
-                    temperature.pressure }}</p>
-                <p class="flex flex-col items-center text-gray-600"><span class="font-semibold">UV Index</span>{{
-                    temperature.uv_index }}</p>
-                <p class="flex flex-col items-center text-gray-600"><span class="font-semibold">Wind</span>{{
-                    temperature.wind }} km/h</p>
-                <p class="flex flex-col items-center text-gray-600"><span class="font-semibold">Humidity</span>{{
-                    temperature.humidity }}</p>
-                <p class="flex flex-col items-center text-gray-600"><span class="font-semibold">Visibility</span>{{
-                    temperature.visibility }}</p>
+                <p class="flex flex-col items-center text-gray-600">
+                    <span class="font-semibold">Dew Point</span>
+                    <span v-if="temperature.dew_point">{{ temperature.dew_point }}</span>
+                    <span v-else>--</span>
+                </p>
+                <p class="flex flex-col items-center text-gray-600">
+                    <span class="font-semibold">Pressure</span>
+                    <span v-if="temperature.pressure">{{ temperature.pressure }}</span>
+                    <span v-else>--</span>
+                </p>
+                <p class="flex flex-col items-center text-gray-600">
+                    <span class="font-semibold">UV Index</span>
+                    <span v-if="temperature.uv_index">{{ temperature.uv_index }}</span>
+                    <span v-else>--</span>
+                </p>
+                <p class="flex flex-col items-center text-gray-600">
+                    <span class="font-semibold">Wind</span>
+                    <span v-if="temperature.wind">{{ temperature.wind }} km/h</span>
+                    <span v-else>--</span>
+                </p>
+                <p class="flex flex-col items-center text-gray-600">
+                    <span class="font-semibold">Humidity</span>
+                    <span v-if="temperature.humidity">{{ temperature.humidity }}</span>
+                    <span v-else>--</span>
+                </p>
+                <p class="flex flex-col items-center text-gray-600">
+                    <span class="font-semibold">Visibility</span>
+                    <span v-if="temperature.visibility">{{ temperature.visibility }}</span>
+                    <span v-else>--</span>
+                </p>
             </div>
         </div>
     </div>
