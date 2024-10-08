@@ -1,6 +1,7 @@
 <template>
     <div class="flex flex-col justify-center items-center">
-        <Slider />
+        <Slider :items="years"/>
+        <Slider :items="months"/>
         <div class="w-[95%] md:w-[80%] mx-auto grid grid-cols-7 gap-4 py-10">
             <div v-for="item in monthlyWeather" :key="item.month"
                 class=" bg-gradient-to-b from-blue-200 via-blue-100 to-blue-50 shadow-md rounded-lg transform transition duration-300 hover:scale-105 hover:shadow-lg flex flex-col justify-center items-center p-6 cursor-pointer">
@@ -32,5 +33,8 @@ const monthlyWeather = computed(() => {
 
     return cityWeather ? cityWeather.monthlyWeather[0].monthsWeather[1].daysWeather : [];
 })
+
+const years = [2024, 2025, 2026];
+const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 </script>
