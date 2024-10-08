@@ -38,6 +38,10 @@ watch(() => route.params.city, (newCity) => {
   }
 })
 
+watch(() => store.state.selectedCity, (newCity) => {
+  if(newCity && newCity !== route.params.city) updateCity(newCity)
+})
+
 </script>
 
 <style scoped></style>
