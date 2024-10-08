@@ -1,12 +1,13 @@
 import { createStore } from "vuex";
 import { db } from "@/firebaseConfig";
-import { collection, getDocs, collection as subCollection } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 
 const store = createStore({
     state: {
         weatherData: [],
         selectedCity: 'Podgorica',
         monthlyWeatherData: [],
+        currentWeather: null,
     },
     mutations: {
         setWeatherData(state, data) {
@@ -17,6 +18,9 @@ const store = createStore({
         },
         setMonthlyWeatherData(state, data) {
             state.monthlyWeatherData = data;
+        },
+        setCurrentWeather(state, weather) {
+            state.currentWeather = weather;
         }
     },
     actions: {
@@ -102,17 +106,28 @@ const store = createStore({
                 }));
                 commit('setMonthlyWeatherData', monthlyWeatherData);
 
-                // console.log('Cities with weather:', citiesList);
+                this.dispatch('updateCurrentWeather')
 
             } catch (error) {
                 console.error('Error fetching data', error);
             }
         },
+        updateCurrentWeather({ commit, state }) {
+            const selectedCityWeather = state.weatherData.find(city => city.id === state.selectedCity)
+            if (selectedCityWeather) {
+                const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                const currentHour = currentTime.split(":")[0].replace("0", "") + currentTime.split(" ")[1];
+
+                const currentWeather = selectedCityWeather.hourlyWeather.find(hourData => hourData.hour === currentHour) || null;
+                commit('setCurrentWeather', currentWeather);
+            }
+        }
     },
     getters: {
         weatherData: (state) => state.weatherData,
         selectedCity: (state) => state.selectedCity,
-        monthlyWeatherData: (state) => state.monthlyWeatherData
+        monthlyWeatherData: (state) => state.monthlyWeatherData,
+        currentWeather: (state) => state.currentWeather,
     }
 });
 
