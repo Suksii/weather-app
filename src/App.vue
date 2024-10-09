@@ -1,11 +1,14 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-b from-blue-300 to-blue-500 flex flex-col">
-    <HeaderSection />
-    <Navbar />
-    <SearchedCitySection />
-    <RouterView v-slot="{ Component, route }">
-      <component :is="Component" :city="selectedCity" />
-    </RouterView>
+  <div class="min-h-screen bg-gradient-to-b from-blue-300 to-blue-500 flex flex-col justify-between">
+    <div>
+      <HeaderSection />
+      <Navbar />
+      <SearchedCitySection />
+      <RouterView v-slot="{ Component, route }">
+        <component :is="Component" :city="selectedCity" />
+      </RouterView>
+    </div>
+    <FooterSection />
   </div>
 </template>
 
@@ -16,6 +19,7 @@ import SearchedCitySection from './components/SearchedCitySection.vue';
 import { onMounted, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useStore } from 'vuex';
+import FooterSection from './components/FooterSection.vue';
 
 
 const selectedCity = ref('Podgorica')
@@ -39,7 +43,7 @@ watch(() => route.params.city, (newCity) => {
 })
 
 watch(() => store.state.selectedCity, (newCity) => {
-  if(newCity && newCity !== route.params.city) updateCity(newCity)
+  if (newCity && newCity !== route.params.city) updateCity(newCity)
 })
 
 </script>
