@@ -7,7 +7,7 @@
             </div>
             <div v-if="currentWeather" class="p-8 bg-blue-100 flex justify-around items-center">
                 <img :src="currentWeather.weather" v-if="currentWeather.weather" alt="weather icon" class="h-24 w-24" />
-                <p v-if="currentWeather.temperature" class="text-6xl font-semibold text-gray-800">{{ currentWeather.temperature }}</p>
+                <p v-if="currentWeather.temperature" class="text-6xl font-semibold text-gray-800">{{ currentWeather.temperature }}°C</p>
                 <p v-else class="text-6xl text-gray-800">--</p>
             </div>
             <div v-if="currentWeather" class="grid md:grid-cols-2">
@@ -70,7 +70,6 @@ onMounted(() => {
 
 const selectedCity = computed(() => store.getters.selectedCity);
 const weatherData = computed(() => store.getters.weatherData);
-
 
 const currentWeather = computed(() => {
     const cityWeather = weatherData.value.find(city => city.id === selectedCity.value);

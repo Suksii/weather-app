@@ -21,9 +21,26 @@
 
 <script setup>
 
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 
-const currentIndex = ref(0);
+const { items, initialSelectedItem } = defineProps({
+    items: {
+        type: Array,
+        required: true,
+    },
+    initialSelectedItem: {
+        type: [String, Number],
+        default: ''
+    }
+})
+
+const emit = defineEmits(['update']);
+
+const currentIndex = ref(items.indexOf(initialSelectedItem));
+
+watch(currentIndex, (newIndex) => {
+    emit('update', items[newIndex]);
+})
 
 const previousItem = () => {
     if (currentIndex.value === 0) {
@@ -41,10 +58,4 @@ const nextItem = () => {
     }
 }
 
-const { items } = defineProps({
-    items: {
-        type: Array,
-        required: true,
-    }
-})
 </script>
