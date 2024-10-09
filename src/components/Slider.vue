@@ -36,7 +36,7 @@ const { items, initialSelectedItem } = defineProps({
 
 const emit = defineEmits(['update']);
 
-const currentIndex = ref(items.indexOf(initialSelectedItem));
+const currentIndex = ref(items.length > 0 ? items.indexOf(initialSelectedItem) : 0);
 
 watch(currentIndex, (newIndex) => {
     emit('update', items[newIndex]);

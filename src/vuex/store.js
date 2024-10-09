@@ -8,6 +8,7 @@ const store = createStore({
         selectedCity: 'Podgorica',
         monthlyWeatherData: [],
         currentWeather: null,
+        availableYears: {},
     },
     mutations: {
         setWeatherData(state, data) {
@@ -21,6 +22,9 @@ const store = createStore({
         },
         setCurrentWeather(state, weather) {
             state.currentWeather = weather;
+        },
+        setAvailableYears(state, { cityId, years }) {
+            state.availableYears[cityId] = years;
         }
     },
     actions: {
@@ -33,7 +37,6 @@ const store = createStore({
                     citiesSnapshot.docs.map(async cityDoc => {
                         const cityData = { id: cityDoc.id, ...cityDoc.data() };
 
-                        // Fetch hourly weather
                         const hourlyWeatherCollection = collection(db, `cities/${cityDoc.id}/hourly`);
                         const hourlyWeatherSnapshot = await getDocs(hourlyWeatherCollection);
 
@@ -90,6 +93,9 @@ const store = createStore({
                             })
                         );
 
+                        const availableYears = monthlyWeather.map(yearData => yearData.year);
+                        commit('setAvailableYears', { cityId: cityDoc.id, years: availableYears });
+
                         return {
                             ...cityData,
                             hourlyWeather,
@@ -128,6 +134,7 @@ const store = createStore({
         selectedCity: (state) => state.selectedCity,
         monthlyWeatherData: (state) => state.monthlyWeatherData,
         currentWeather: (state) => state.currentWeather,
+        availableYears: (state) => state.availableYears,
     }
 });
 
