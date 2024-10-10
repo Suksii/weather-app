@@ -7,7 +7,8 @@
                 <p v-else>--</p>
                 <img v-if="temperature.weather" :src="temperature.weather" alt="weather" class="h-10 w-10" />
                 <p v-else>--</p>
-                <p v-if="temperature.temperature" class="text-lg font-semibold text-gray-700">{{ temperature.temperature }} °C</p>
+                <p v-if="temperature.temperature" class="text-lg font-semibold text-gray-700">{{ temperature.temperature
+                    }} °C</p>
                 <p v-else>--</p>
                 <p @click="toggleDetails(index)" class="cursor-pointer">
                     <svg :class="!toggle.includes(index) ? '' : 'rotate-180'" xmlns="http://www.w3.org/2000/svg"
@@ -57,6 +58,7 @@
 <script setup>
 
 import { computed, ref } from "vue"
+import { parse } from "vue/compiler-sfc";
 import { useStore } from "vuex"
 
 const store = useStore();
@@ -66,7 +68,21 @@ const selectedCity = computed(() => store.getters.selectedCity);
 
 const hourlyWeather = computed(() => {
     const cityWeather = store.getters.weatherData.find(city => city.id === selectedCity.value);
-    return cityWeather ? cityWeather.hourlyWeather : [];
+    return cityWeather
+        ? cityWeather.hourlyWeather.sort((a, b) => {
+            const aPeriod = a.hour.includes('AM') ? 0 : 1;
+            const bPeriod = b.hour.includes('AM') ? 0 : 1;
+
+            if (aPeriod !== bPeriod) {
+                return aPeriod - bPeriod;
+            }
+
+            const aHour = parseInt(a.hour.replace(/\D+/g, ''), 10);
+            const bHour = parseInt(b.hour.replace(/\D+/g, ''), 10);
+
+            return aHour - bHour;
+        })
+        : [];
 })
 
 const toggleDetails = (index) => {

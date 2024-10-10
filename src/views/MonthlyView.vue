@@ -8,10 +8,12 @@
             <div v-for="item in filteredMonthlyWeather" :key="item.day"
                 class=" bg-gradient-to-b from-blue-200 via-blue-100 to-blue-50 shadow-md rounded-lg transform transition duration-300 hover:scale-105 hover:shadow-lg flex flex-col justify-center items-center p-6 cursor-pointer">
                 <p class="text-lg font-semibold text-gray-800">{{ item.day }}</p>
-                <img :src="item.weather" class="h-10 w-10" />
+                <img v-if="item.weather" :src="item.weather" class="h-10 w-10" />
                 <div class="flex flex-col items-center">
-                    <p class="text-2xl font-bold text-blue-600">{{ item.max_temperature }}</p>
-                    <p class="text-lg text-gray-700">{{ item.min_temperature }}</p>
+                    <p v-if="item.max_temperature" class="text-2xl font-bold text-blue-600">{{ item.max_temperature }}</p>
+                    <p v-else class="text-2xl font-bold">--</p>
+                    <p v-if="item.min_temperature" class="text-lg text-gray-700">{{ item.min_temperature }}</p>
+                    <p v-else class="text-lg">--</p>
                 </div>
             </div>
         </div>
