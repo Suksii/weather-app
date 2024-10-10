@@ -8,7 +8,21 @@
 </template>
 
 <script setup>
+import { onMounted, onUnmounted, ref } from 'vue';
 
-const currentYear = new Date().getFullYear();
+const currentYear = ref(new Date().getFullYear());
+
+const updateYear = () => {
+    currentYear.value = new Date().getFullYear();
+}
+
+
+onMounted(() => {
+    const interval = setInterval(updateYear, 60 * 60 * 1000);
+
+    onUnmounted(() => {
+        clearInterval(interval)
+    })
+})
 
 </script>
