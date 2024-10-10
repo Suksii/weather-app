@@ -1,5 +1,5 @@
 <template>
-    <header class="sticky top-0 shadow-xl">
+    <header class="sticky bg-gradient-to-b from-blue-300 to-blue-500  top-0 shadow-xl">
         <div class="flex justify-end md:hidden p-4">
             <svg v-if="!isMenuOpen" @click="toggleMenu" xmlns="http://www.w3.org/2000/svg" fill="none"
                 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -15,13 +15,13 @@
         <div class="flex items-center justify-center">
             <nav v-if="isMenuOpen" class="flex flex-col md:flex-row justify-center items-center w-full">
                 <RouterLink v-for="item in navMenu" :to="`${item.link}/${selectedCity}`" :key="item.id" @click="toggleMenu"
-                    class="p-4 min-w-32 w-full md:w-32 hover:shadow-md hover:shadow-blue-800 text-center duration-300 text-lg text-blue-700 font-semibold">
+                    class="p-4 min-w-32 w-full md:w-32 hover:shadow-md hover:shadow-blue-800 text-center duration-300 text-lg text-blue-800 font-semibold">
                     {{ item.name }}
                 </RouterLink>
             </nav>
             <nav class="hidden md:flex flex-row justify-center items-center w-full">
                 <RouterLink v-for="item in navMenu" :to="`${item.link}/${selectedCity}`" :key="item.id"
-                    class="p-4 min-w-32 w-full md:w-32 hover:shadow-md hover:shadow-blue-800 text-center duration-300 text-lg text-blue-700 font-semibold">
+                    class="p-4 min-w-32 w-full md:w-32 hover:shadow-md hover:shadow-blue-800 text-center duration-300 text-lg text-blue-800 font-semibold">
                     {{ item.name }}
                 </RouterLink>
             </nav>

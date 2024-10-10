@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-b from-blue-300 to-blue-500 flex flex-col justify-between">
+  <div class="min-h-screen bg-gradient-to-b from-blue-300 to-blue-500 flex flex-col justify-between font-lato">
     <div>
       <HeaderSection />
       <Navbar />
@@ -48,4 +48,6 @@ watch(() => store.state.selectedCity, (newCity) => {
 
 </script>
 
-<style scoped></style>
+<style scoped>
+  @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
+</style>

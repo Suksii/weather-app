@@ -1,5 +1,5 @@
 <template>
-    <div class="w-[95%] md:w-[700px] mx-auto bg-blue-50 my-10 pb-6 rounded-lg shadow-lg overflow-hidden">
+    <div class="w-[95%] md:w-[700px] mx-auto bg-blue-50 my-12 pb-6 rounded-lg shadow-lg overflow-hidden font-lato">
         <div class="flex flex-col">
             <div class="flex bg-gradient-to-r from-blue-400 to-blue-600 text-white items-end justify-between py-2 bg-blue-200 rounded-t-lg px-4">
                 <p class="text-xl">{{ selectedCity }}, Montenegro</p>
@@ -13,17 +13,17 @@
             <div v-if="currentWeather" class="grid md:grid-cols-2">
                 <div class="flex justify-between py-1 pt-2 mx-4 px-2 border-b border-black">
                     <p class="text-gray-600 font-medium">Wind</p>
-                    <p v-if="currentWeather.wind" class="text-gray-900">{{ currentWeather.wind }}</p>
+                    <p v-if="currentWeather.wind" class="text-gray-900">{{ currentWeather.wind }}km/h</p>
                     <p v-else>--</p>
                 </div>
                 <div class="flex justify-between py-1 pt-2 mx-4 px-2 border-b border-black">
                     <p class="text-gray-600 font-medium">Humidity</p>
-                    <p v-if="currentWeather.humidity" class="text-gray-900">{{ currentWeather.humidity }}</p>
+                    <p v-if="currentWeather.humidity" class="text-gray-900">{{ currentWeather.humidity }}%</p>
                     <p v-else>--</p>
                 </div>
                 <div class="flex justify-between py-1 pt-2 mx-4 px-2 border-b border-black">
                     <p class="text-gray-600 font-medium">Pressure</p>
-                    <p v-if="currentWeather.pressure" class="text-gray-900">{{ currentWeather.pressure }}</p>
+                    <p v-if="currentWeather.pressure" class="text-gray-900">{{ currentWeather.pressure }}mb</p>
                     <p v-else>--</p>
                 </div>
                 <div class="flex justify-between py-1 pt-2 mx-4 px-2 border-b border-black">
@@ -33,7 +33,7 @@
                 </div>
                 <div class="flex justify-between py-1 pt-2 mx-4 px-2 border-b border-black">
                     <p class="text-gray-600 font-medium">Dew Point</p>
-                    <p v-if="currentWeather.dew_point" class="text-gray-900">{{ currentWeather.dew_point }}</p>
+                    <p v-if="currentWeather.dew_point" class="text-gray-900">{{ currentWeather.dew_point }}°C</p>
                     <p v-else>--</p>
                 </div>
                 <div class="flex justify-between py-1 pt-2 mx-4 px-2 border-b border-black">

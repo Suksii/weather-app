@@ -22,12 +22,12 @@
                 class="overflow-hidden bg-blue-50 ring-2 ring-blue-200 grid grid-cols-3 gap-6 my-4 rounded-lg p-6 transition-all duration-500 ease-in-out">
                 <p class="flex flex-col items-center text-gray-600">
                     <span class="font-semibold">Dew Point</span>
-                    <span v-if="temperature.dew_point">{{ temperature.dew_point }}</span>
+                    <span v-if="temperature.dew_point">{{ temperature.dew_point }} °C</span>
                     <span v-else>--</span>
                 </p>
                 <p class="flex flex-col items-center text-gray-600">
                     <span class="font-semibold">Pressure</span>
-                    <span v-if="temperature.pressure">{{ temperature.pressure }}</span>
+                    <span v-if="temperature.pressure">{{ temperature.pressure }} mb</span>
                     <span v-else>--</span>
                 </p>
                 <p class="flex flex-col items-center text-gray-600">
@@ -42,7 +42,7 @@
                 </p>
                 <p class="flex flex-col items-center text-gray-600">
                     <span class="font-semibold">Humidity</span>
-                    <span v-if="temperature.humidity">{{ temperature.humidity }}</span>
+                    <span v-if="temperature.humidity">{{ temperature.humidity }} %</span>
                     <span v-else>--</span>
                 </p>
                 <p class="flex flex-col items-center text-gray-600">
