@@ -93,7 +93,7 @@ const store = createStore({
                             })
                         );
 
-                        const availableYears = monthlyWeather.map(yearData => yearData.year);
+                        const availableYears = monthlyWeather.map(yearData => yearData.year).sort((a, b) => a - b);
                         commit('setAvailableYears', { cityId: cityDoc.id, years: availableYears });
 
                         return {
@@ -134,7 +134,7 @@ const store = createStore({
         selectedCity: (state) => state.selectedCity,
         monthlyWeatherData: (state) => state.monthlyWeatherData,
         currentWeather: (state) => state.currentWeather,
-        availableYears: (state) => state.availableYears,
+        availableYears: (state) => state.availableYears
     }
 });
 

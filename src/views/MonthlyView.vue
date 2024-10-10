@@ -1,7 +1,9 @@
 <template>
     <div class="flex flex-col justify-center items-center">
-        <Slider :items="availableYears" :initialSelectedItem="selectedYear" @update="setSelectedYear" />
-        <Slider :items="months" :initialSelectedItem="selectedMonth" @update="setSelectedMonth" />
+        <Slider v-if="availableYears && availableYears.length > 0" :items="availableYears"
+            :initialSelectedItem="selectedYear" @update="setSelectedYear" />
+        <Slider v-if="availableYears && availableYears.length > 0" :items="months" :initialSelectedItem="selectedMonth"
+            @update="setSelectedMonth" />
         <div class="w-[95%] md:w-[80%] mx-auto grid grid-cols-7 gap-4 py-10">
             <div v-for="item in filteredMonthlyWeather" :key="item.month"
                 class=" bg-gradient-to-b from-blue-200 via-blue-100 to-blue-50 shadow-md rounded-lg transform transition duration-300 hover:scale-105 hover:shadow-lg flex flex-col justify-center items-center p-6 cursor-pointer">
@@ -27,14 +29,14 @@ const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
 
 const store = useStore();
 
-const availableYears = computed(() => {
-    const cityData = store.getters.weatherData.find(city => city.id === store.getters.selectedCity);
-    return cityData ? cityData.monthlyWeather.map(year => year.year) : [];
-});
+
+
+
 const selectedCity = computed(() => store.getters.selectedCity);
+const availableYears = computed(() => store.getters.availableYears[selectedCity.value]);
 const weatherData = computed(() => store.getters.weatherData);
 
-const selectedYear = ref(new Date().getFullYear());
+const selectedYear = ref(new Date().getFullYear().toString());
 const selectedMonth = ref(months[new Date().getMonth()]);
 
 const setSelectedYear = (year) => {
@@ -42,6 +44,7 @@ const setSelectedYear = (year) => {
 }
 const setSelectedMonth = (month) => {
     selectedMonth.value = month;
+
 }
 
 // const monthlyWeather = computed(() => {
@@ -64,6 +67,5 @@ const filteredMonthlyWeather = computed(() => {
     }
     return [];
 });
-
 
 </script>

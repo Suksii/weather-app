@@ -27,11 +27,13 @@ const { items, initialSelectedItem } = defineProps({
     items: {
         type: Array,
         required: true,
+        default: () => []
     },
     initialSelectedItem: {
-        type: [String, Number],
+        type: String,
         default: ''
     }
+    
 })
 
 const emit = defineEmits(['update']);
