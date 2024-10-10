@@ -5,11 +5,10 @@
         <Slider v-if="availableYears && availableYears.length > 0" :items="months" :initialSelectedItem="selectedMonth"
             @update="setSelectedMonth" />
         <div class="w-[95%] md:w-[80%] mx-auto grid grid-cols-7 gap-4 py-10">
-            <div v-for="item in filteredMonthlyWeather" :key="item.month"
+            <div v-for="item in filteredMonthlyWeather" :key="item.day"
                 class=" bg-gradient-to-b from-blue-200 via-blue-100 to-blue-50 shadow-md rounded-lg transform transition duration-300 hover:scale-105 hover:shadow-lg flex flex-col justify-center items-center p-6 cursor-pointer">
-                <p class="text-lg font-semibold text-gray-800">{{ item.month }}</p>
-                <!-- <img :src="item.weather" class="h-10 w-10"/> -->
-                <p>{{ item.weather }}</p>
+                <p class="text-lg font-semibold text-gray-800">{{ item.day }}</p>
+                <img :src="item.weather" class="h-10 w-10" />
                 <div class="flex flex-col items-center">
                     <p class="text-2xl font-bold text-blue-600">{{ item.max_temperature }}</p>
                     <p class="text-lg text-gray-700">{{ item.min_temperature }}</p>
@@ -44,9 +43,7 @@ const setSelectedYear = (year) => {
 }
 const setSelectedMonth = (month) => {
     selectedMonth.value = month;
-
 }
-
 // const monthlyWeather = computed(() => {
 //     const cityWeather = weatherData.value.find(city => city.id === selectedCity.value);
 
@@ -60,9 +57,7 @@ const filteredMonthlyWeather = computed(() => {
         const yearData = cityWeather.monthlyWeather.find(year => year.year == selectedYear.value);
         if (yearData) {
             const monthData = yearData.monthsWeather.find(month => month.month === selectedMonth.value);
-            console.log(monthData);
-
-            return monthData ? monthData.daysWeather : [];
+            return monthData ? monthData.daysWeather.sort((a, b) => a.day - b.day) : [];
         }
     }
     return [];
