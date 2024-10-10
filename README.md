@@ -22,3 +22,7 @@ Weather app is a web project developed in Vue. <br/>This is my first Vue project
 ### Daily View
 
 ![weather-app-today](https://github.com/user-attachments/assets/e887b7cf-23e0-48a4-bbea-3db6dbfc0f1a)
+
+### Search by city
+
+![weather-app-search](https://github.com/user-attachments/assets/47fa6fb4-b94c-43fc-8ecb-a084a8f35412)
